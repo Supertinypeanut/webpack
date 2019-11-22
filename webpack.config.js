@@ -11,5 +11,14 @@ module.exports = {
         filename: 'main.js'
     },
     // 打包方式
-    mode:'development'
+    mode:'development',
+    module: {
+        rules: [
+            // 处理css文件转化为，js模块，在生成style节点
+          {
+            test: /\.css$/,
+            use: ['style-loader', 'css-loader'],
+          },
+        ],
+      }
 }
