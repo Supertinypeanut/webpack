@@ -1,4 +1,5 @@
 const path = require('path')
+const HTMLwebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
     // 入口
@@ -12,6 +13,7 @@ module.exports = {
     },
     // 打包方式
     mode:'development',
+    // 模块规则
     module: {
         rules: [
             // 处理css文件转化为，js模块，在生成style节点
@@ -40,7 +42,12 @@ module.exports = {
               }, {
                 loader: 'less-loader' // compiles Less to CSS
               }]
-          }
+          },
+         
         ]
-      }
+      },
+       // 解决打包后的路径问题，将HTML也打包到dist的目录中
+       plugins:[
+         new HTMLwebpackPlugin()
+       ]
 }
