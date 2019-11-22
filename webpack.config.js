@@ -55,8 +55,14 @@ module.exports = {
               presets: ['@babel/preset-env']
             }
           }
+        },
+        // 处理字体文件
+        {
+          test: /\.(woff|woff2|eot|ttf|otf)$/,
+          use: [
+            'file-loader'
+          ]
         }
-         
         ]
       },
        // 插件
