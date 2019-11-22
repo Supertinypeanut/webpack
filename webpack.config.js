@@ -1,5 +1,7 @@
 const path = require('path')
 const HTMLwebpackPlugin = require('html-webpack-plugin')
+// 注意中文文档没有{},坑
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 
 module.exports = {
     // 入口
@@ -46,8 +48,11 @@ module.exports = {
          
         ]
       },
-       // 解决打包后的路径问题，将HTML也打包到dist的目录中
+       // 插件
        plugins:[
-         new HTMLwebpackPlugin()
+        //  每次构建清除dist目录内容
+         new CleanWebpackPlugin(),
+        //  解决打包后的路径问题，将HTML也打包到dist的目录中
+         new HTMLwebpackPlugin({title:"我是标题",body:"我是内容"})
        ]
 }
