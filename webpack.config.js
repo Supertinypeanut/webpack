@@ -45,6 +45,17 @@ module.exports = {
                 loader: 'less-loader' // compiles Less to CSS
               }]
           },
+        // 处理ES5+的语法，兼容低浏览器
+        {
+          test: /\.m?js$/,
+          exclude: /(node_modules|bower_components)/,
+          use: {
+            loader: 'babel-loader',
+            options: {
+              presets: ['@babel/preset-env']
+            }
+          }
+        }
          
         ]
       },
@@ -53,6 +64,6 @@ module.exports = {
         //  每次构建清除dist目录内容
          new CleanWebpackPlugin(),
         //  解决打包后的路径问题，将HTML也打包到dist的目录中
-         new HTMLwebpackPlugin({title:"我是标题",body:"我是内容"})
+         new HTMLwebpackPlugin({title:"我是标题"})
        ]
 }
