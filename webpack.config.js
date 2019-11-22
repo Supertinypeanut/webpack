@@ -28,7 +28,19 @@ module.exports = {
                 options: {},
               },
             ],
+          },
+        //   处理less文件
+          {
+            test: /\.less$/,
+            // loader: 'less-loader' // 将 Less 编译为 CSS
+            use: [{
+                loader: 'style-loader' // creates style nodes from JS strings
+              }, {
+                loader: 'css-loader' // translates CSS into CommonJS
+              }, {
+                loader: 'less-loader' // compiles Less to CSS
+              }]
           }
-        ],
+        ]
       }
 }
