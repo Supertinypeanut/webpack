@@ -3,6 +3,8 @@ const HTMLwebpackPlugin = require('html-webpack-plugin');
 // 注意中文文档没有{},坑
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const webpack = require('webpack');
+// 引入Vue Loader插件
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 require("@babel/polyfill");
 
@@ -59,29 +61,35 @@ module.exports = {
                 loader: 'less-loader' // compiles Less to CSS
               }]
           },
-        // 处理ES5+的语法，兼容低浏览器
-        {
-          test: /\.m?js$/,
-          exclude: /(node_modules|bower_components)/,
-          use: {
-            loader: 'babel-loader',
-            options: {
-              // 转码规则
-              presets: ['@babel/preset-env'],
-              // 开启缓存，他会把上一次打包的结果缓存起来，提高打包效率·1
-              cacheDirectory: true,
-              // 开启bable辅助代码
-              plugins: ['@babel/plugin-transform-runtime']
+          // 处理ES5+的语法，兼容低浏览器
+          {
+            test: /\.m?js$/,
+            exclude: /(node_modules|bower_components)/,
+            use: {
+              loader: 'babel-loader',
+              options: {
+                // 转码规则
+                presets: ['@babel/preset-env'],
+                // 开启缓存，他会把上一次打包的结果缓存起来，提高打包效率·1
+                cacheDirectory: true,
+                // 开启bable辅助代码
+                plugins: ['@babel/plugin-transform-runtime']
+              }
             }
+          },
+          // 处理字体文件
+          {
+            test: /\.(woff|woff2|eot|ttf|otf)$/,
+            use: [
+              'file-loader'
+            ]
+          },
+          // VueLoader插件
+          // ... 其它规则
+          {
+            test: /\.vue$/,
+            loader: 'vue-loader'
           }
-        },
-        // 处理字体文件
-        {
-          test: /\.(woff|woff2|eot|ttf|otf)$/,
-          use: [
-            'file-loader'
-          ]
-        }
         ]
       },
        // 插件
@@ -89,7 +97,12 @@ module.exports = {
         //  每次构建清除dist目录内容
          new CleanWebpackPlugin(),
         //  解决打包后的路径问题，将HTML也打包到dist的目录中
-         new HTMLwebpackPlugin({title:"我是标题"}),
-         new webpack.HotModuleReplacementPlugin()
+         new HTMLwebpackPlugin({
+           template : './src/index.html'
+         }),
+        //  热模块插件
+         new webpack.HotModuleReplacementPlugin(),
+        //  VueLoader插件
+        new VueLoaderPlugin()
        ]
 }
