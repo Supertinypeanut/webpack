@@ -54,7 +54,10 @@ module.exports = {
           use: {
             loader: 'babel-loader',
             options: {
-              presets: ['@babel/preset-env']
+              // 转码规则
+              presets: ['@babel/preset-env'],
+              // 开启缓存，他会把上一次打包的结果缓存起来，提高打包效率·1
+              cacheDirectory: true
             }
           }
         },
