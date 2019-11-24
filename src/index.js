@@ -10,13 +10,12 @@ import './style/index1.less'
 import './style/index.css'
 import 'bootstrap/dist/css/bootstrap.css'
 
-
 // const path = require('path')
 import a from '@/js/a.js'
 a()
 console.log('我手机')
 
 new Vue({
-    router,
-    render: h => h(App)
+  router,
+  render: h => h(App)
 }).$mount('#app')
