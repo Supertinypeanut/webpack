@@ -1,7 +1,8 @@
-const path = require('path')
-const HTMLwebpackPlugin = require('html-webpack-plugin')
+const path = require('path');
+const HTMLwebpackPlugin = require('html-webpack-plugin');
 // 注意中文文档没有{},坑
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
+const webpack = require('webpack');
 
 require("@babel/polyfill");
 
@@ -21,7 +22,12 @@ module.exports = {
     devtool: 'inline-source-map',
     // 开启webpack-dev-server,可以实时重新加载
     devServer:{
-      contentBase: './dist'
+      // 打包路径
+      contentBase: './dist',
+      // 开启热块
+      hot: true,
+      // 关闭自动打开
+      open: false
     },
     // 模块规则
     module: {
@@ -83,6 +89,7 @@ module.exports = {
         //  每次构建清除dist目录内容
          new CleanWebpackPlugin(),
         //  解决打包后的路径问题，将HTML也打包到dist的目录中
-         new HTMLwebpackPlugin({title:"我是标题"})
+         new HTMLwebpackPlugin({title:"我是标题"}),
+         new webpack.HotModuleReplacementPlugin()
        ]
 }
