@@ -20,7 +20,11 @@ module.exports = {
     },
     resolve: {
       // 省略扩展名
-      extensions: ['.js','.vue','.json']
+      extensions: ['.js','.vue','.json'],
+      // 设置路径变量
+      alias :{
+        '@':path.join(__dirname,'./src')
+      }
     },
     // 打包方式，开发模式不压缩代码
     mode:'development',

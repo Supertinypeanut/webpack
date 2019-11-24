@@ -12,7 +12,7 @@ import 'bootstrap/dist/css/bootstrap.css'
 
 
 // const path = require('path')
-import a from './js/a.js'
+import a from '@/js/a.js'
 a()
 console.log('我手机')
 
