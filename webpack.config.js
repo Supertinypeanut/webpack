@@ -15,8 +15,10 @@ module.exports = {
         // 打包文件名
         filename: 'main.js'
     },
-    // 打包方式
+    // 打包方式，开发模式不压缩代码
     mode:'development',
+    // 开启source-map
+    devtool: 'inline-source-map',
     // 模块规则
     module: {
         rules: [
