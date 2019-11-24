@@ -9,4 +9,6 @@ export default function(){
     // throw new Error('11')
     console.log(filterArr)
     console.log('我是a')
+    // console.log('我是a')
+    console.log('我是a')
 }

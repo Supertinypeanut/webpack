@@ -19,6 +19,10 @@ module.exports = {
     mode:'development',
     // 开启source-map
     devtool: 'inline-source-map',
+    // 开启webpack-dev-server,可以实时重新加载
+    devServer:{
+      contentBase: './dist'
+    },
     // 模块规则
     module: {
         rules: [
