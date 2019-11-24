@@ -3,9 +3,11 @@ const HTMLwebpackPlugin = require('html-webpack-plugin')
 // 注意中文文档没有{},坑
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 
+require("@babel/polyfill");
+
 module.exports = {
     // 入口
-    entry : './src/index.js',
+    entry : ["@babel/polyfill",'./src/index.js'],
     // 出口
     output:{
         // 生成js文件入口
