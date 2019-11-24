@@ -69,6 +69,15 @@ module.exports = {
                 loader: 'less-loader' // compiles Less to CSS
               }]
           },
+          // 配置ESlint
+          {
+            // 强制提前
+              enforce: 'pre',
+              test: /\.js$/,
+              // 排除node_modules
+              exclude: /node_modules/,
+              loader: 'eslint-loader'
+          },
           // 处理ES5+的语法，兼容低浏览器
           {
             test: /\.m?js$/,
