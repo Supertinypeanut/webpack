@@ -1,6 +1,6 @@
 // 引入vue文件
 import Vue from 'vue'
-import App from './app.vue'
+import App from './app'
 
 // 引入router.js
 import router from './router/router'

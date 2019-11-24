@@ -18,6 +18,10 @@ module.exports = {
         // 打包文件名
         filename: 'main.js'
     },
+    resolve: {
+      // 省略扩展名
+      extensions: ['.js','.vue','.json']
+    },
     // 打包方式，开发模式不压缩代码
     mode:'development',
     // 开启source-map
