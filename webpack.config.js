@@ -28,6 +28,10 @@ module.exports = {
   },
   // 打包方式，开发模式不压缩代码
   mode: 'development',
+  // 优化
+  optimization: {
+      usedExports: true
+  },
   // 开启source-map
   devtool: 'inline-source-map',
   // 开启webpack-dev-server,可以实时重新加载
@@ -70,14 +74,14 @@ module.exports = {
         }]
       },
       // 配置ESlint
-      {
-        // 强制提前
-        enforce: 'pre',
-        test: /\.js$/,
-        // 排除node_modules
-        exclude: /node_modules/,
-        loader: 'eslint-loader'
-      },
+      // {
+      //   // 强制提前
+      //   enforce: 'pre',
+      //   test: /\.js$/,
+      //   // 排除node_modules
+      //   exclude: /node_modules/,
+      //   loader: 'eslint-loader'
+      // },
       // 处理ES5+的语法，兼容低浏览器
       {
         test: /\.m?js$/,
@@ -115,6 +119,7 @@ module.exports = {
     new CleanWebpackPlugin(),
     //  解决打包后的路径问题，将HTML也打包到dist的目录中
     new HTMLwebpackPlugin({
+      filename: 'index.html',
       template: './src/index.html'
     }),
     //  热模块插件
