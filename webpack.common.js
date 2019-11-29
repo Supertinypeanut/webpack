@@ -12,14 +12,15 @@ module.exports = {
   // entry: ['@babel/polyfill', './src/index.js'],
   entry:{
     index: './src/index.js',
-    another: './src/js/another-module.js'
+    // another: './src/js/another-module.js'
   },
   // 出口
   output: {
     // 生成js文件入口
     path: path.join(__dirname, '/dist'),
     // 打包文件名
-    filename: '[name].bundle.js'
+    filename: '[name].bundle.js',
+    chunkFilename: '[name].bundle.js'
   },
   // 防止重复
   optimization: {
