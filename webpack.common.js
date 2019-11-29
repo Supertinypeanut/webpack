@@ -9,13 +9,23 @@ const webpack = require('webpack')
 
 module.exports = {
   // 入口
-  entry: ['@babel/polyfill', './src/index.js'],
+  // entry: ['@babel/polyfill', './src/index.js'],
+  entry:{
+    index: './src/index.js',
+    another: './src/js/another-module.js'
+  },
   // 出口
   output: {
     // 生成js文件入口
     path: path.join(__dirname, '/dist'),
     // 打包文件名
-    filename: 'main.js'
+    filename: '[name].bundle.js'
+  },
+  // 防止重复
+  optimization: {
+    splitChunks: {
+      chunks: 'all'
+    }
   },
     // 插件
   plugins: [

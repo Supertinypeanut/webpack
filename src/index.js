@@ -11,7 +11,7 @@ import './style/index.css'
 import 'bootstrap/dist/css/bootstrap.css'
 
 // 引入math方法
-import { cube } from './math.js';
+import { cube } from './js/math.js';
 
 // const path = require('path')
 import a from '@/js/a.js'
