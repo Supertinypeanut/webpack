@@ -2,11 +2,10 @@ const path = require('path')
 const HTMLwebpackPlugin = require('html-webpack-plugin')
 // 注意中文文档没有{},坑
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
-const webpack = require('webpack')
 // 引入Vue Loader插件
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
-require('@babel/polyfill')
+const webpack = require('webpack')
 
 module.exports = {
   // 入口
@@ -18,6 +17,24 @@ module.exports = {
     // 打包文件名
     filename: 'main.js'
   },
+    // 插件
+  plugins: [
+    //  每次构建清除dist目录内容
+    new CleanWebpackPlugin(),
+    //  解决打包后的路径问题，将HTML也打包到dist的目录中
+    new HTMLwebpackPlugin({
+      filename: 'index.html',
+      template: './src/index.html'
+    }),
+    //  热模块插件
+    new webpack.HotModuleReplacementPlugin(),
+    //  VueLoader插件
+    new VueLoaderPlugin()
+  ],
+  // 优化
+  optimization: {
+      usedExports: true
+  },
   resolve: {
     // 省略扩展名
     extensions: ['.js', '.vue', '.json'],
@@ -25,23 +42,6 @@ module.exports = {
     alias: {
       '@': path.join(__dirname, './src')
     }
-  },
-  // 打包方式，开发模式不压缩代码
-  mode: 'development',
-  // 优化
-  optimization: {
-      usedExports: true
-  },
-  // 开启source-map
-  devtool: 'inline-source-map',
-  // 开启webpack-dev-server,可以实时重新加载
-  devServer: {
-    // 打包路径
-    contentBase: './dist',
-    // 开启热块
-    hot: true,
-    // 关闭自动打开
-    open: false
   },
   // 模块规则
   module: {
@@ -112,19 +112,5 @@ module.exports = {
         loader: 'vue-loader'
       }
     ]
-  },
-  // 插件
-  plugins: [
-    //  每次构建清除dist目录内容
-    new CleanWebpackPlugin(),
-    //  解决打包后的路径问题，将HTML也打包到dist的目录中
-    new HTMLwebpackPlugin({
-      filename: 'index.html',
-      template: './src/index.html'
-    }),
-    //  热模块插件
-    new webpack.HotModuleReplacementPlugin(),
-    //  VueLoader插件
-    new VueLoaderPlugin()
-  ]
+  }
 }
